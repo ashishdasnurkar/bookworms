@@ -85,3 +85,19 @@ func equalBooks(books, target []Book) bool {
 
 	return true
 }
+
+// equalBooksCount is a helper to test the equality of two maps of books count.
+func equalBooksCount(got, want map[Book]uint) bool {
+	if len(got) != len(want) {
+		return false
+	}
+
+	for book, targetCount := range want {
+		count, ok := got[book]
+		if !ok || targetCount != count {
+			return false
+		}
+	}
+
+	return true
+}
