@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 )
 
@@ -46,4 +47,26 @@ func booksCount(bookworms []Bookworm) map[Book]uint {
 	}
 
 	return count
+}
+
+// findCommonBooks returns books that are on more than one bookworm's shelf.
+func findCommonBooks(bookworms []Bookworm) []Book {
+	booksOnShelves := booksCount(bookworms)
+
+	var commonBooks []Book
+
+	for book, count := range booksOnShelves {
+		if count > 1 {
+			commonBooks = append(commonBooks, book)
+		}
+	}
+
+	return commonBooks
+}
+
+// displayBooks prints out the titles and authors of a list of books
+func displayBooks(books []Book) {
+	for _, book := range books {
+		fmt.Println("-", book.Title, "by", book.Author)
+	}
 }
