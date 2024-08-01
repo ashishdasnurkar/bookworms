@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"sort"
 )
 
 // A Bookworm contains the list of books on a bookworm's shelf.
@@ -69,4 +70,16 @@ func displayBooks(books []Book) {
 	for _, book := range books {
 		fmt.Println("-", book.Title, "by", book.Author)
 	}
+}
+
+// sortBooks sorts the books by Author and then Title.
+func sortBooks(books []Book) []Book {
+	sort.Slice(books, func(i, j int) bool {
+		if books[i].Author != books[j].Author {
+			return books[i].Author < books[j].Author
+		}
+		return books[i].Title < books[j].Title
+	})
+
+	return books
 }
