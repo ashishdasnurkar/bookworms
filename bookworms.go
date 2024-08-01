@@ -62,7 +62,7 @@ func findCommonBooks(bookworms []Bookworm) []Book {
 		}
 	}
 
-	return commonBooks
+	return sortBooks(commonBooks)
 }
 
 // displayBooks prints out the titles and authors of a list of books
